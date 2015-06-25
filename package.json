@@ -1,0 +1,11 @@
+{
+  "name": "gamejolt-cleint",
+  "version": "0.1.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "./node_modules/electron-prebuilt/dist/Electron.app/Contents/MacOS/Electron ."
+  },
+  "devDependencies": {
+    "electron-rebuild": "^0.2.2"
+  }
+}
