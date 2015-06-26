@@ -1,11 +1,16 @@
 {
-  "name": "gamejolt-cleint",
+  "name": "gamejolt-client",
   "version": "0.1.0",
   "main": "main.js",
   "scripts": {
-    "start": "./node_modules/electron-prebuilt/dist/Electron.app/Contents/MacOS/Electron ."
+    "start": "./node_modules/electron-prebuilt/dist/Electron.app/Contents/MacOS/Electron .",
+    "electron-rebuild": "./node_modules/.bin/electron-rebuild"
   },
   "devDependencies": {
     "electron-rebuild": "^0.2.2"
+  },
+  "dependencies": {
+    "axios": "^0.5.4",
+    "react": "^0.13.3"
   }
 }
