@@ -69,6 +69,7 @@ let Sidebar = React.createClass({
             </div>
           </div>
         </If>
+        <div className="subtitle-nav">Featured Tags</div>
       </div>
     );
   }

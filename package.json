@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "axios": "^0.5.4",
+    "electron-prebuilt": "^0.28.3",
     "react": "^0.13.3",
     "react-classset": "0.0.2"
   }
