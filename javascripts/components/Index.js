@@ -3,7 +3,8 @@ let classSet = require("react-classset");
 
 let GameThumbnail = require("./GameThumbnail");
 
-let discover = require("../actions/discoverGames");
+let WebInterface = require("../api/WebInterface");
+let discoverGames = require("../actions/discoverGames");
 let notify = require("../actions/notify");
 
 let Index = React.createClass({
@@ -27,11 +28,7 @@ let Index = React.createClass({
   },
 
   componentDidMount: function() {
-    discover((payload) => {
-      notify("New friend request!", "Agro wants to be friends with you.", () => {
-        console.log("go to agro's page");
-      });
-
+    new WebInterface().makeRequest(discoverGames, (payload) => {
       this.setState({featuredGames: payload.featuredGames, weeksGames: payload.weeksGames, hotGames: payload.hotGames, bestGames: payload.bestGames});
 
       this.featuredInterval = setInterval(() => {

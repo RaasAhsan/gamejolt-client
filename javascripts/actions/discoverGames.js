@@ -1,12 +1,8 @@
 let axios = require("axios");
 
-let discoverGames = (callback) => {
-  axios.get('https://gamejolt.com/site-api/web/discover')
-      .then((data) => {
-        callback(data.data.payload);
-      }).catch((error) => {
-        console.error(error);
-      })
+let discoverGames = {
+  method: 'get',
+  url: 'https://gamejolt.com/site-api/web/discover'
 }
 
 module.exports = discoverGames;

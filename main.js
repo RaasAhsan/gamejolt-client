@@ -5,6 +5,8 @@ require('crash-reporter').start();
 
 var mainWindow = null;
 
+console.log(process.env.HOME);
+
 app.on('window-all-closed', function() {
   if (process.platform != 'darwin') {
     app.quit();

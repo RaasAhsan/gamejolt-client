@@ -4,3 +4,4 @@ public/built/
 public/images/
 deploy/
 target/
+auth.js

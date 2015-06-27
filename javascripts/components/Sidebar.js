@@ -70,6 +70,17 @@ let Sidebar = React.createClass({
           </div>
         </If>
         <div className="subtitle-nav">Featured Tags</div>
+        <div className="sidebar-bottom">
+          <div className="pure-u-12-24 sidebar-stat users-online">
+            <i className="ionicons ion-android-people"></i> <span>3643</span>
+          </div>
+          <div className="pure-u-6-24 sidebar-stat friend-requests">
+            <i className="ionicons ion-android-person-add"></i>
+          </div>
+          <div className="pure-u-6-24 sidebar-stat news-notifications">
+            <i className="ionicons ion-alert"></i>
+          </div>
+        </div>
       </div>
     );
   }

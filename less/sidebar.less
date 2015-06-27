@@ -2,6 +2,7 @@
 @nav-bg: #111;
 
 .sidebar {
+  position: relative;
   height: 100%;
 
   background-color: @header-bg;
@@ -86,4 +87,48 @@
   text-transform: uppercase;
 
   background-color: #0a0a0a;
+}
+
+.sidebar-bottom {
+  background-color: #0f0f0f;
+
+  position: absolute;
+  bottom: 0px;
+
+  width: 100%;
+
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  text-align: center;
+
+  .sidebar-stat {
+    padding: 8px 8px;
+  }
+
+  .users-online {
+    color: #cf0;
+
+    i {
+      font-size: 18px;
+      margin-right: 4px;
+    }
+  }
+
+  .friend-requests {
+    color: #ccc;
+
+    i {
+      font-size: 18px;
+      margin-right: 4px;
+    }
+  }
+
+  .news-notifications {
+    color: #ff3fac;
+
+    i {
+      font-size: 18px;
+      margin-right: 4px;
+    }
+  }
 }
