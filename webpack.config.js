@@ -1,10 +1,18 @@
 
 module.exports = {
-  entry: './javascripts/entry.js',
+  entry: {
+    app: ['webpack/hot/dev-server', './javascripts/entry.js'],
+  },
 
   output: {
     path: './public/built',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: 'http://localhost:8090/built/'
+  },
+
+  devServer: {
+    contentBase: "./public",
+    publicPath: 'http://localhost:8090/built/'
   },
 
   module: {

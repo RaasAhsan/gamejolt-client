@@ -4,6 +4,7 @@
   "main": "main.js",
   "scripts": {
     "start": "./node_modules/electron-prebuilt/dist/Electron.app/Contents/MacOS/Electron .",
+    "watch": "./node_modules/.bin/webpack-dev-server --hot --port 8090",
     "electron-rebuild": "./node_modules/.bin/electron-rebuild"
   },
   "devDependencies": {
@@ -16,7 +17,8 @@
     "less-loader": "^2.2.0",
     "node-libs-browser": "^0.5.2",
     "style-loader": "^0.12.3",
-    "webpack": "^1.9.12"
+    "webpack": "^1.9.12",
+    "webpack-dev-server": "^1.9.0"
   },
   "dependencies": {
     "axios": "^0.5.4",
