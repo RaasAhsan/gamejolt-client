@@ -9,7 +9,7 @@ let Client = React.createClass({
     return (
       <div className="page-container">
         <Sidebar/>
-        <div className="pure-u-20-24">
+        <div className="route-content pure-u-20-24">
           <Index/>
         </div>
       </div>

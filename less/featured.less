@@ -1,76 +1,72 @@
 
-section.featured-carousel {
-  background-color: #333;
+section.featured-games {
+  color: #000;
+
+  position: relative;
+  height: 400px;
+
+  background-position: center;
+  background-size: 180% 400px;
+
+  cursor: pointer;
+
+  transition: all 0.1s ease-in;
+  &:hover {
+    background-size: 185% 415px;
+    opacity: 0.9;
+  }
+}
+
+.featured-game-info {
+  position: absolute;
+  bottom: 54px;
+  left: 64px;
+
+  font-family: 'Open Sans', sans-serif;
+  text-shadow: 4px 4px 6px rgba(0,0,0,.8);
   color: #fff;
 
-  padding-top: 30px;
-
-  .title {
-    font-family: 'Lato', sans-serif;
-    font-size: 36px;
+  .featured-name {
+    font-size: 42px;
     font-weight: 300;
-    text-align: center;
-
-    color: #fff;
   }
 
-  .container {
-    width: 300px;
-    height: 400px;
-    perspective: 1000px;
+  .featured-description {
+    font-size: 22px;
+    font-weight: 300;
+    width: 70%;
+  }
+}
 
-    margin: 0 auto;
-    padding-top: 100px;
+.featured-carousel {
+  width: 100%;
 
-    position: relative;
+  position: absolute;
+  bottom: 8px;
+
+  text-align: center;
+}
+
+.featured-selectors {
+
+}
+
+.featured-select {
+  display: inline-block;
+
+  width: 10px;
+  height: 10px;
+
+  background-color: #aaa;
+  border-radius: 100%;
+
+  margin: 0 4px;
+
+  &.selected {
+    background-color: #fff;
   }
 
-  .carousel {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    transform-style: preserve-3d;
-    transition: transform 1.5s;
-
-    margin: 0 auto;
-  }
-
-  .generate-positions(6);
-  .generate-positions(@n, @i: 1) when (@i =< @n) {
-    .on-featured-@{i} {
-      transform: rotateY(-60deg * (@i - 1));
-    }
-    .generate-positions(@n, (@i + 1));
-  }
-
-  .featured-game {
-    display: block;
-    position: absolute;
-
-    width: 300px;
-    height: 200px;
-    line-height: 200px;
-    font-size: 5em;
-    text-align: center;
-    color: #FFF;
-    opacity: 0.95;
-    border-radius: 2px;
-
-    background-image: url('https://n3b6p5n5.ssl.hwcdn.net/data/featured/719/badassfinal-fhxqu6p9.png');
-    background-position: center;
-    background-size: 600px 200px;
-  }
-
-  .generate-featured(6);
-  .generate-featured(@n, @i: 1) when (@i =< @n) {
-    .featured-@{i} {
-      transform: rotateY(60deg * (@i - 1)) translateZ(300px);
-
-      transition: transform 0.1s linear;
-      &:hover {
-        transform: rotateY(60deg * (@i - 1)) translateZ(350px);
-      }
-    }
-    .generate-featured(@n, (@i + 1));
+  &:hover {
+    background-color: #fff;
   }
 }

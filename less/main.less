@@ -1,5 +1,6 @@
 @import "featured.less";
 @import "fonts.less";
+@import "gamethumbnail.less";
 @import "page.less";
 @import "sidebar.less";
 
@@ -16,6 +17,11 @@ body {
 
 #content, .page-container {
   height: 100%;
+}
+
+.route-content {
+  max-height: 100%;
+  overflow-y: scroll;
 }
 
 *, :after, :before {
