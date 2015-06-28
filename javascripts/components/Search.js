@@ -1,6 +1,7 @@
 import React from "react";
 
 let GameThumbnail = require("./GameThumbnail");
+let UserThumbnail = require("./UserThumbnail");
 
 let WebInterface = require("../api/WebInterface");
 let search = require("../actions/search");
@@ -38,6 +39,7 @@ let Search = React.createClass({
 
   render: function() {
     let games = this.state.games.map((game, i) => <GameThumbnail key={i} game={game}/>);
+    let users = this.state.users.map((user, i) => <UserThumbnail key={i} user={user}/>);
 
     return (
       <div>
@@ -47,6 +49,7 @@ let Search = React.createClass({
         </section>
         <section className="page-section">
           <div className="section-title">{this.state.usersCount} users found for '{this.state.query}'</div>
+          {users}
         </section>
       </div>
     );
