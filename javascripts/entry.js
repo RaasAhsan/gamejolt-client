@@ -2,8 +2,7 @@ require('../less/main.less');
 
 'use strict';
 
-let React = require("react");
-
-let Client = require("./components/Client");
+import React from "react";
+import Client from './components/Client';
 
 React.render(<Client/>, document.getElementById('content'));

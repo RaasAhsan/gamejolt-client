@@ -1,4 +1,4 @@
-let React = require("react");
+import React from "react";
 
 let Sidebar = require("./Sidebar");
 let Index = require('./Index');
@@ -19,7 +19,7 @@ let Client = React.createClass({
     return {
       chatInterface: null,
       friendRequests: [],
-      notifications: 0
+      notifications: []
     };
   },
 
@@ -42,14 +42,23 @@ let Client = React.createClass({
         }, 10000);
 
         new WebInterface().makeRequest(getNotifications, (data) => {
-          this.setState({notifications: data.notificationsCount});
+          this.setState({notifications: data.notifications});
         });
         this.notificationInterval = setInterval(() => {
           new WebInterface().makeRequest(getNotifications, (data) => {
-            this.setState({notifications: data.notificationsCount});
+            let newNotifications = data.notifications.filter(n => this.state.notifications.map(f => f.id).indexOf(n.id) == -1);
+
+            newNotifications.forEach((n) => {
+              if(n.type == 'game-rating-add') {
+                notify('New game rating', `${n.object_model.title} got a rating of ${n.action_model.rating}!`);
+              } else if(n.type == "comment-add-object-owner") {
+                notify('New game comment', `${n.subject_model.display_name} commented on ${n.action_model.title}!`);
+              }
+            });
+
+            this.setState({notifications: data.notifications});
           });
         }, 10000);
-
 
         this.setState({chatInterface: new ChatInterface()});
         this.state.chatInterface.initialize();

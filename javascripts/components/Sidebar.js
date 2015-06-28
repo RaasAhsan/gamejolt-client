@@ -1,6 +1,6 @@
-let React = require("react");
+import React from "react";
 
-let If = require("./control/If");
+import If from './control/If';
 
 let Sidebar = React.createClass({
 
@@ -87,7 +87,7 @@ let Sidebar = React.createClass({
             <i className="ionicons ion-android-person-add"></i> <span>{this.props.friendRequests.length}</span>
           </div>
           <div className="pure-u-8-24 sidebar-stat news-notifications">
-            <i className="ionicons ion-alert"></i> <span>{this.props.notifications}</span>
+            <i className="ionicons ion-ios-lightbulb"></i> <span>{this.props.notifications.length}</span>
           </div>
         </div>
       </div>

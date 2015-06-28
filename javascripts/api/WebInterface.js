@@ -1,6 +1,6 @@
-let axios = require("axios");
+import axios from 'axios';
 
-let assign = require("object-assign");
+import assign from 'object-assign';
 
 export default class {
 

@@ -1,4 +1,5 @@
-let React = require("react");
+import React from "react";
+
 let classSet = require("react-classset");
 
 let GameThumbnail = require("./GameThumbnail");

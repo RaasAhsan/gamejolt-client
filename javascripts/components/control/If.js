@@ -1,6 +1,6 @@
-var React = require('react');
+import React from "react";
 
-var If = React.createClass({
+let If = React.createClass({
   propTypes: {
     test: React.PropTypes.bool.isRequired
   },
