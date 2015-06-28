@@ -6,7 +6,6 @@ let GameThumbnail = require("./GameThumbnail");
 
 let WebInterface = require("../api/WebInterface");
 let discoverGames = require("../actions/discoverGames");
-let notify = require("../actions/notify");
 
 let Index = React.createClass({
 

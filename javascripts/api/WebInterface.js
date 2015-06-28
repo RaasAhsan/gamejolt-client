@@ -28,6 +28,7 @@ export default class {
         'Cache-Control': 'no-cache'
       }, controller.headers || {})
     }).then((data) => {
+      window.dispatcher.dispatch('user-data', data.data.user);
       callback(data.data.payload);
     }).catch((error) => {
       console.error(error);

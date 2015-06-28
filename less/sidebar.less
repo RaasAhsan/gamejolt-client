@@ -156,3 +156,42 @@
 
   padding: 0 12px 12px 12px;
 }
+
+.sidebar-user {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+
+  color: #fff;
+  background-color: #2f2f2f;
+
+  img {
+    width: 100%;
+    vertical-align: bottom;
+  }
+
+  .user-action {
+    cursor: pointer;
+    padding: 7px 8px;
+
+    transition: transform 0.1s linear;
+    &:hover {
+      background-color: #111;
+      color: #cf0;
+
+      div {
+        transform: translateX(4px);
+      }
+    }
+
+    i {
+      margin: 0 2px;
+    }
+
+    div {
+      display: inline-block;
+      transition: transform 0.1s linear;
+    }
+  }
+}

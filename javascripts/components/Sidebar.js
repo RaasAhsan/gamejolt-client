@@ -5,6 +5,8 @@ import If from './control/If';
 import Router from '../router/Router';
 let Link = Router.Link;
 
+import UserControl from './UserControl';
+
 let Sidebar = React.createClass({
 
   mixins: [Router.Navigation],
@@ -104,6 +106,7 @@ let Sidebar = React.createClass({
         </If>
 
         <div className="sidebar-bottom">
+          <UserControl/>
           <div className="pure-u-8-24 sidebar-stat users-online">
             <i className="ionicons ion-android-people"></i> <span>{this.state.onlineUsers}</span>
           </div>

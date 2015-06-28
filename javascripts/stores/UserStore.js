@@ -23,6 +23,11 @@ let UserStore = createStore({
   },
 
   handlers: {
+    'user-data': function(user){
+      this.user = user;
+
+      this.emitChange();
+    }
   }
 
 });

@@ -11,7 +11,10 @@ export default class {
       console.log('Sending frontend cookies...');
 
       getFrontendCookie((frontend) => {
-        this.sendFrontend(frontend);
+        if(!this.frontendSent) {
+          this.frontendSent = true;
+          this.sendFrontend(frontend);
+        }
       });
     });
 
