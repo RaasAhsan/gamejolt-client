@@ -6,7 +6,8 @@ let Sidebar = React.createClass({
 
   getInitialState: function() {
     return {
-      showNav: 0
+      showNav: 0,
+      onlineUsers: 0
     };
   },
 
@@ -18,6 +19,14 @@ let Sidebar = React.createClass({
         this.setState({showNav: this.state.showNav + 1});
       }
     }, 50);
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    if(nextProps.chatInterface) {
+      nextProps.chatInterface.onOnlineUsersChanged((count) => {
+        this.setState({onlineUsers: count});
+      });
+    }
   },
 
   render: function() {
@@ -71,14 +80,14 @@ let Sidebar = React.createClass({
         </If>
         <div className="subtitle-nav">Featured Tags</div>
         <div className="sidebar-bottom">
-          <div className="pure-u-12-24 sidebar-stat users-online">
-            <i className="ionicons ion-android-people"></i> <span>3643</span>
+          <div className="pure-u-8-24 sidebar-stat users-online">
+            <i className="ionicons ion-android-people"></i> <span>{this.state.onlineUsers}</span>
           </div>
-          <div className="pure-u-6-24 sidebar-stat friend-requests">
-            <i className="ionicons ion-android-person-add"></i>
+          <div className="pure-u-8-24 sidebar-stat friend-requests">
+            <i className="ionicons ion-android-person-add"></i> <span>{this.props.friendRequests.length}</span>
           </div>
-          <div className="pure-u-6-24 sidebar-stat news-notifications">
-            <i className="ionicons ion-alert"></i>
+          <div className="pure-u-8-24 sidebar-stat news-notifications">
+            <i className="ionicons ion-alert"></i> <span>{this.props.notifications}</span>
           </div>
         </div>
       </div>
