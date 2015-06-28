@@ -36,7 +36,7 @@ class Router extends React.Component {
     let Route = this.state.routes[this.state.path];
     return (
       <Handler>
-        <Route {...this.props.params}/>
+        <Route params={this.state.params}/>
       </Handler>
     );
   }

@@ -54,34 +54,44 @@ let Sidebar = React.createClass({
         </If>
         <div className="subtitle-nav">Browse Games</div>
         <If test={this.state.showNav >= 2}>
-          <div className="sidebar-nav">
+          <Link to="hotGames" activeClassName="active-nav" className="sidebar-nav">
             <div>
               <i className="ionicons ion-ios-game-controller-b"></i> Hot Games
             </div>
-          </div>
+          </Link>
         </If>
         <If test={this.state.showNav >= 3}>
-          <div className="sidebar-nav">
+          <Link to="featuredGames" activeClassName="active-nav" className="sidebar-nav">
             <div>
               <i className="ionicons ion-ios-game-controller-b"></i> Featured Games
             </div>
-          </div>
+          </Link>
         </If>
         <If test={this.state.showNav >= 4}>
-          <div className="sidebar-nav">
+          <Link to="topRatedGames" activeClassName="active-nav" className="sidebar-nav">
             <div>
               <i className="ionicons ion-ios-game-controller-b"></i> Top-Rated Games
             </div>
-          </div>
+          </Link>
         </If>
         <If test={this.state.showNav >= 5}>
-          <div className="sidebar-nav">
+          <Link to="newlyAddedGames" activeClassName="active-nav" className="sidebar-nav">
             <div>
               <i className="ionicons ion-ios-game-controller-b"></i> Newly Added Games
             </div>
-          </div>
+          </Link>
         </If>
+
         <div className="subtitle-nav">Featured Tags</div>
+
+        <If test={this.state.showNav >= 6}>
+          <Link to="tag" params={{tag: 'fnaf'}} activeClassName="active-nav" className="sidebar-nav">
+            <div>
+              <i className="ionicons ion-ios-pricetags"></i> Five Nights at Freddy's
+            </div>
+          </Link>
+        </If>
+
         <div className="sidebar-bottom">
           <div className="pure-u-8-24 sidebar-stat users-online">
             <i className="ionicons ion-android-people"></i> <span>{this.state.onlineUsers}</span>
