@@ -25,6 +25,10 @@ let UserControl = React.createClass({
     this.setState(assign(window.dispatcher.getStore(UserStore).getState()));
   },
 
+  onLogOut: function(e){
+    console.log("logging out");
+  },
+
   render: function() {
     return (
       <div className="pure-1-1 sidebar-user">
@@ -34,8 +38,8 @@ let UserControl = React.createClass({
               <img src={this.state.user.img_avatar}/>
             </div>
             <div className="pure-u-3-4">
-              <Link to="gameToken" className="user-action"><div><i className="ionicon ion-locked"></i> Game Token</div></Link>
-              <Link className="user-action"><div><i className="ionicon ion-log-out"></i> Log out</div></Link>
+              <Link to="gameToken" activeClassName="active-user-action" className="user-action"><div><i className="ionicon ion-locked"></i> Game Token</div></Link>
+              <div onClick={this.onLogOut} className="user-action"><div><i className="ionicon ion-log-out"></i> Log out</div></div>
             </div>
           </div>
         </If>

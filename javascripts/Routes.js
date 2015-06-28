@@ -7,6 +7,7 @@ import NewlyAddedGames from './components/NewlyAddedGames';
 import Tag from './components/Tag';
 import GamePage from './components/GamePage';
 import Search from './components/Search';
+import GameToken from './components/GameToken';
 
 module.exports = {
   index: Index,
@@ -17,5 +18,6 @@ module.exports = {
   newlyAddedGames: NewlyAddedGames,
   tag: Tag,
   gamePage: GamePage,
-  search: Search
+  search: Search,
+  gameToken: GameToken
 };

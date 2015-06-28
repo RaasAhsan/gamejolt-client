@@ -175,8 +175,13 @@
     cursor: pointer;
     padding: 7px 8px;
 
+    &.active-user-action {
+      background-color: #111;
+      color: #cf0;
+    }
+
     transition: transform 0.1s linear;
-    &:hover {
+    &:hover:not(.active-user-action) {
       background-color: #111;
       color: #cf0;
 
