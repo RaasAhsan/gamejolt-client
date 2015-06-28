@@ -22,11 +22,11 @@ export default class {
     });
 
     this.client.on('reconnect', (opts) => {
-      this.log('Attemping to reconnect...');
+      console.log('Attemping to reconnect...');
     });
 
     this.client.on('reconnected', (opts) => {
-      this.log('Reconnected to GameJolt chat server.');
+      console.log('Reconnected to GameJolt chat server.');
     });
 
     this.client.on('error', (err) => {
@@ -34,7 +34,7 @@ export default class {
     });
 
     this.client.on('end', (opts) => {
-      this.log('Disconnected from GameJolt chat server.');
+      console.log('Disconnected from GameJolt chat server.');
     });
   }
 

@@ -7,6 +7,8 @@ let Link = Router.Link;
 
 let Sidebar = React.createClass({
 
+  mixins: [Router.Navigation],
+
   getInitialState: function() {
     return {
       showNav: 0,
@@ -32,11 +34,20 @@ let Sidebar = React.createClass({
     }
   },
 
+  search: function(e){
+    let query = this.refs.searchText.getDOMNode().value;
+
+    this.context.router.routeTo('search', {q: query});
+  },
+
   render: function() {
     return (
       <div className="sidebar pure-u-4-24">
         <div className="title-nav">
           <img src="images/gj-logo.svg"/>
+        </div>
+        <div className="nav-search">
+          <input ref="searchText" onChange={this.search} type="text" placeholder="Search games and users..."/>
         </div>
         <If test={this.state.showNav >= 0}>
           <Link to="index" activeClassName="active-nav" className="sidebar-nav">

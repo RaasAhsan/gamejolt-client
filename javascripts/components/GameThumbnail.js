@@ -11,18 +11,12 @@ let GameThumbnail = React.createClass({
 
   },
 
-  getInitialState: function() {
-    return {
-      game: this.props.game
-    };
-  },
-
   render: function() {
     return (
-      <Link to="gamePage" params={{gameId: this.state.game.id}} className="game-thumbnail pure-u-1-4">
-        <img src={this.state.game.img_thumbnail}/>
+      <Link to="gamePage" params={{gameId: this.props.game.id}} className="game-thumbnail pure-u-1-4">
+        <img src={this.props.game.img_thumbnail}/>
         <div className="game-title">
-          {this.state.game.title}
+          {this.props.game.title}
         </div>
       </Link>
     );

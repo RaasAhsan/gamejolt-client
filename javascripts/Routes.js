@@ -6,6 +6,7 @@ import TopRatedGames from './components/TopRatedGames';
 import NewlyAddedGames from './components/NewlyAddedGames';
 import Tag from './components/Tag';
 import GamePage from './components/GamePage';
+import Search from './components/Search';
 
 module.exports = {
   index: Index,
@@ -15,5 +16,6 @@ module.exports = {
   topRatedGames: TopRatedGames,
   newlyAddedGames: NewlyAddedGames,
   tag: Tag,
-  gamePage: GamePage
+  gamePage: GamePage,
+  search: Search
 };
