@@ -7,6 +7,15 @@
     <link rel="stylesheet" type="text/css" href="http://hackdationcdn.s3-website-us-west-1.amazonaws.com/css/ionicons.min.css"/>
 
     <script src="http://schat.gamejolt.com/primus/primus.js"></script>
+    <script type="text/javascript">
+      var ipc = require('ipc');
+      var getFrontendCookie = function(callback){
+        ipc.send('get-frontend-cookie');
+        ipc.on('receive-frontend-cookie', function(arg){
+          callback(arg);
+        });
+      };
+    </script>
   </head>
   <body>
     <div id="content"></div>

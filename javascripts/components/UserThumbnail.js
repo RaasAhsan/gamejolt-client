@@ -12,7 +12,6 @@ let UserThumbnail = React.createClass({
   },
 
   render: function() {
-    console.log(this.props.user);
     return (
       <Link to="userPage" className="user-thumbnail pure-u-4-24">
         <img src={this.props.user.img_avatar}/>

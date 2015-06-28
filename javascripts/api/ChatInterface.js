@@ -9,7 +9,10 @@ export default class {
   initialize() {
     this.client.on('open', () => {
       console.log('Sending frontend cookies...');
-      this.sendFrontend();
+
+      getFrontendCookie((frontend) => {
+        this.sendFrontend(frontend);
+      });
     });
 
     this.client.on('data', (msg) => {
@@ -38,8 +41,8 @@ export default class {
     });
   }
 
-  sendFrontend() {
-    this.client.write({event: 'set-cookie', cookie: 't7bjutdhqq3me7no1nqa5g7v36'});
+  sendFrontend(frontend) {
+    this.client.write({event: 'set-cookie', cookie: frontend});
   }
 
   processPayload(payload) {

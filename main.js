@@ -1,5 +1,6 @@
 var app = require('app');
 var BrowserWindow = require('browser-window');
+var ipc = require('ipc');
 
 require('crash-reporter').start();
 
@@ -22,5 +23,18 @@ app.on('ready', function() {
 
   mainWindow.on('closed', function() {
     mainWindow = null;
+  });
+
+  mainWindow.webContents.on('did-finish-load', function(){
+    ipc.on('get-frontend-cookie', function(event, arg){
+      mainWindow.webContents.session.cookies.get({name: 'frontend'}, function(error, cookies){
+        if(error) throw error;
+        if(cookies) {
+          event.sender.send('receive-frontend-cookie', cookies[0].value);
+        } else {
+          event.sender.send('receive-frontend-cookie', null);
+        }
+      });
+    });
   });
 });
