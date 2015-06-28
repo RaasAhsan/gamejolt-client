@@ -1,7 +1,6 @@
 import React from "react";
 
 let Sidebar = require("./Sidebar");
-let Index = require('./Index');
 
 let ChatInterface = require('../api/ChatInterface');
 
@@ -71,7 +70,7 @@ let Client = React.createClass({
       <div className="page-container">
         <Sidebar chatInterface={this.state.chatInterface} friendRequests={this.state.friendRequests} notifications={this.state.notifications}/>
         <div className="route-content pure-u-20-24">
-          <Index/>
+          {this.props.children}
         </div>
       </div>
     );

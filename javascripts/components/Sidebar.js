@@ -2,6 +2,9 @@ import React from "react";
 
 import If from './control/If';
 
+import Router from '../router/Router';
+let Link = Router.Link;
+
 let Sidebar = React.createClass({
 
   getInitialState: function() {
@@ -36,18 +39,18 @@ let Sidebar = React.createClass({
           <img src="images/gj-logo.svg"/>
         </div>
         <If test={this.state.showNav >= 0}>
-          <div className="sidebar-nav active-nav">
+          <Link to="index" activeClassName="active-nav" className="sidebar-nav">
             <div>
               <i className="ionicons ion-ios-game-controller-b"></i> Discover
             </div>
-          </div>
+          </Link>
         </If>
         <If test={this.state.showNav >= 1}>
-          <div className="sidebar-nav">
+          <Link to="library" activeClassName="active-nav" className="sidebar-nav">
             <div>
               <i className="ionicons ion-ios-book"></i> Library
             </div>
-          </div>
+          </Link>
         </If>
         <div className="subtitle-nav">Browse Games</div>
         <If test={this.state.showNav >= 2}>

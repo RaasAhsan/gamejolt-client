@@ -38,6 +38,10 @@ let Index = React.createClass({
     });
   },
 
+  componentWillUnmount: function() {
+    clearInterval(this.featuredInterval);
+  },
+
   selectFeatured: function(i) {
     return () => {
       this.setState({selectedFeatured: i});
