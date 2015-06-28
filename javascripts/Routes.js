@@ -5,6 +5,7 @@ import FeaturedGames from './components/FeaturedGames';
 import TopRatedGames from './components/TopRatedGames';
 import NewlyAddedGames from './components/NewlyAddedGames';
 import Tag from './components/Tag';
+import GamePage from './components/GamePage';
 
 module.exports = {
   index: Index,
@@ -13,5 +14,6 @@ module.exports = {
   featuredGames: FeaturedGames,
   topRatedGames: TopRatedGames,
   newlyAddedGames: NewlyAddedGames,
-  tag: Tag
+  tag: Tag,
+  gamePage: GamePage
 };

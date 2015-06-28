@@ -15,6 +15,7 @@ export default class {
     this.client.on('data', (msg) => {
       if(msg.event == 'connected') {
         console.log('Connected to GameJolt chat server.');
+        this.processPayload(msg);
       } else if(msg.event == 'update') {
         this.processPayload(msg);
       }
@@ -51,6 +52,7 @@ export default class {
       } else if(msg.label == 'onlineUsers') {
       } else if(msg.label == 'rooms') {
       } else if(msg.label == 'userMuted') {
+      } else if(msg.label == 'currentUser') {
       } else if(msg.label == 'notifications') {
         console.log(msg.data);
       } else {

@@ -1,5 +1,8 @@
 import React from "react";
 
+import Router from '../router/Router';
+let Link = Router.Link;
+
 let GameThumbnail = React.createClass({
 
   propTypes: {
@@ -16,12 +19,12 @@ let GameThumbnail = React.createClass({
 
   render: function() {
     return (
-      <div className="game-thumbnail pure-u-1-4">
+      <Link to="gamePage" params={{gameId: this.state.game.id}} className="game-thumbnail pure-u-1-4">
         <img src={this.state.game.img_thumbnail}/>
         <div className="game-title">
           {this.state.game.title}
         </div>
-      </div>
+      </Link>
     );
   }
 
