@@ -10,6 +10,7 @@ import Search from './components/Search';
 import GameToken from './components/GameToken';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+import InstalledGames from './components/InstalledGames';
 
 module.exports = {
   index: Index,
@@ -23,5 +24,6 @@ module.exports = {
   search: Search,
   gameToken: GameToken,
   login: Login,
-  signUp: SignUp
+  signUp: SignUp,
+  installedGames: InstalledGames,
 };

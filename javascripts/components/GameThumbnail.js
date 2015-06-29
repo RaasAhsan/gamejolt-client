@@ -18,6 +18,9 @@ let GameThumbnail = React.createClass({
         <div className="game-title">
           {this.props.game.title}
         </div>
+        <div className="game-author">
+          {this.props.game.developer.display_name}
+        </div>
       </Link>
     );
   }

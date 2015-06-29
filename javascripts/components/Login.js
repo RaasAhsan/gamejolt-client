@@ -3,6 +3,7 @@ import React from "react";
 import Router from '../router/Router';
 
 let classSet = require("react-classset");
+let If = require("./control/If");
 
 let GameThumbnail = require("./GameThumbnail");
 
@@ -20,7 +21,9 @@ let Login = React.createClass({
         mediaItem: {
           img_url: ""
         }
-      }
+      },
+      showField: 0,
+      loading: false
     };
   },
 
@@ -28,16 +31,28 @@ let Login = React.createClass({
     new WebInterface().makeRequest(getCustomizedPage, (payload) => {
       this.setState({background: payload});
     });
+
+    this.showInterval = setInterval(() => {
+      if(this.state.showField == 3) {
+        clearInterval(this.showInterval);
+      } else {
+        this.setState({showField: this.state.showField + 1});
+      }
+    }, 50);
   },
 
   login: function(){
     let username = this.refs.username.getDOMNode().value;
     let password = this.refs.password.getDOMNode().value;
 
+    this.setState({loading: true});
+
     new WebInterface().makeRequest(login(username, password), (payload) => {
       if(payload.success){
         this.context.router.routeTo('index', {});
         window.dispatcher.dispatch('user-data', payload.user);
+      } else {
+        this.setState({loading: false});
       }
     });
   },
@@ -57,10 +72,19 @@ let Login = React.createClass({
             <div className="auth-header">
               <img src="images/gj-logo.svg"/>
               <div className="auth-textboxes">
-                <input ref="username" type="text" placeholder="Enter your username..."/>
-                <input ref="password" type="password" placeholder="Enter your password..."/>
+                <If test={this.state.showField >= 0}>
+                  <input className="auth-show-field" ref="username" type="text" placeholder="Enter your username..."/>
+                </If>
+                <If test={this.state.showField >= 1}>
+                  <input className="auth-show-field" ref="password" type="password" placeholder="Enter your password..."/>
+                </If>
               </div>
-              <button onClick={this.login} className="button-full">Log in</button>
+              <If test={this.state.loading}>
+                <div className="auth-loading"><img src="https://b6d3e9q9.ssl.hwcdn.net/lib/gj-lib-client/components/loading/loading.7084ee07.gif"/></div>
+              </If>
+              <If test={this.state.showField >= 2}>
+                <button onClick={this.login} className="button-full auth-show-field">Log in</button>
+              </If>
             </div>
           </div>
           <div className="pure-u-8-24"></div>

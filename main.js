@@ -4,12 +4,14 @@ var ipc = require('ipc');
 
 var fs = require('fs');
 var jsonfile = require('jsonfile');
+var Download = require('download');
 
 require('crash-reporter').start();
 
 var mainWindow = null;
 var homeDir = process.env.HOME;
 var configDir = process.env.HOME + '/.gamejolt/';
+var cacheDir = process.env.HOME + '/.gamejolt/cachedir/';
 
 // Create data + config dirs and files for gamejolt
 if(!fs.existsSync(configDir)) {
@@ -51,9 +53,15 @@ app.on('ready', function() {
       });
     });
 
-    ipc.on('downloaded-game', function(event, arg){
-      
-    });
-
   });
+});
+
+ipc.on('save-cached-file', function(event, arg){
+  new Download({}).get(arg).dest(cacheDir).run(function (err, files) {
+    console.log("Cached " + files.length + " files.");
+  });
+});
+
+ipc.on('get-cached-file-url', function(event, arg){
+  event.sender.send('receive-cached-file-url', cacheDir + arg);
 });

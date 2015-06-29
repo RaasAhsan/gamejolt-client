@@ -15,7 +15,11 @@ class Router extends React.Component {
     return {
       router: {
         routeTo: (path, params) => {
-          this.routeTo(path, params);
+          if(this.state.routes[path]) {
+            this.routeTo(path, params);
+          } else {
+            console.error(`A path does not exist for route '${path}'.`);
+          }
         },
 
         currentRoute: () => {

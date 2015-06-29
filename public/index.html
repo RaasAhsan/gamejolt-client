@@ -3,15 +3,51 @@
   <head>
     <title>GameJolt - Free Indie Games Online</title>
 
-    <link rel="stylesheet" type="text/css" href="http://hackdationcdn.s3-website-us-west-1.amazonaws.com/css/pure-grids.min.css"/>
-    <link rel="stylesheet" type="text/css" href="http://hackdationcdn.s3-website-us-west-1.amazonaws.com/css/ionicons.min.css"/>
-
     <script src="http://schat.gamejolt.com/primus/primus.js"></script>
     <script src="bridge.js"></script>
+    <script type="text/javascript">
+      var bundle = document.createElement('script');
+      bundle.setAttribute("type","text/javascript");
+
+      var pureCss = document.createElement('link');
+      pureCss.setAttribute('rel', 'stylesheet');
+      pureCss.setAttribute('type', 'text/css');
+
+      var iconCss = document.createElement('link');
+      iconCss.setAttribute('rel', 'stylesheet');
+      iconCss.setAttribute('type', 'text/css');
+
+      if(isInternetConnected()) {
+        bundle.setAttribute("src", "http://localhost:8090/built/bundle.js");
+        pureCss.setAttribute('href', "http://hackdationcdn.s3-website-us-west-1.amazonaws.com/css/pure-grids.min.css");
+        iconCss.setAttribute('href', "http://hackdationcdn.s3-website-us-west-1.amazonaws.com/css/ionicons.min.css");
+
+        saveCachedFile('http://localhost:8090/built/bundle.js');
+        saveCachedFile('http://hackdationcdn.s3-website-us-west-1.amazonaws.com/css/pure-grids.min.css');
+        saveCachedFile('http://hackdationcdn.s3-website-us-west-1.amazonaws.com/css/ionicons.min.css');
+
+        document.getElementsByTagName("html")[0].appendChild(bundle);
+        document.getElementsByTagName("head")[0].appendChild(pureCss);
+        document.getElementsByTagName("head")[0].appendChild(iconCss);
+      } else {
+        getCachedFileUrl('bundle.js', function(url){
+          bundle.setAttribute("src", "http://localhost:8090/built/bundle.js");
+          getCachedFileUrl('pure-grids.min.css', function(url){
+            pureCss.setAttribute('href', url);
+            getCachedFileUrl('ionicons.min.css', function(url){
+              iconCss.setAttribute('href', url);
+
+              document.getElementsByTagName("html")[0].appendChild(bundle);
+              document.getElementsByTagName("head")[0].appendChild(pureCss);
+              document.getElementsByTagName("head")[0].appendChild(iconCss);
+            });
+          });
+        });
+      }
+    </script>
   </head>
   <body>
     <div id="content"></div>
   </body>
-    <script src="http://localhost:8090/webpack-dev-server.js"></script>
-    <script src="http://localhost:8090/built/bundle.js"></script>
+  <script src="http://localhost:8090/webpack-dev-server.js"></script>
 </html>

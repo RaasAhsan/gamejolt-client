@@ -55,14 +55,14 @@ let UserControl = React.createClass({
         </If>
         <If test={this.state.user == null}>
           <div>
-            <If test={this.props.showNav >= 7}>
+            <If test={this.props.showNav >= 8}>
               <Link to="login" activeClassName="active-nav" className="sidebar-nav">
                 <div>
                   <i className="ionicons ion-log-in"></i> Log in to GameJolt
                 </div>
               </Link>
             </If>
-            <If test={this.props.showNav >= 8}>
+            <If test={this.props.showNav >= 9}>
               <Link to="signUp" activeClassName="active-nav" className="sidebar-nav">
                 <div>
                   <i className="ionicons ion-person"></i> Sign up on GameJolt
