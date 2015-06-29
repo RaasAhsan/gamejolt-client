@@ -26,7 +26,7 @@ class Router extends React.Component {
   }
 
   routeTo(path, params) {
-    if(this.state.path != path || this.state.path != params) {
+    if(this.state.path != path || this.state.params != params) {
       this.setState({path: path, params: params});
     }
   }
