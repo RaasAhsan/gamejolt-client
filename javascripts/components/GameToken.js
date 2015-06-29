@@ -7,11 +7,11 @@ let GameThumbnail = require("./GameThumbnail");
 let WebInterface = require("../api/WebInterface");
 let getGameToken = require("../actions/getGameToken");
 
-let Gametoken = React.createClass({
+let GameToken = React.createClass({
 
   getInitialState: function() {
     return {
-      token: "",
+      token: ""
     };
   },
 
@@ -36,4 +36,4 @@ let Gametoken = React.createClass({
 
 });
 
-module.exports = Gametoken;
+module.exports = GameToken;

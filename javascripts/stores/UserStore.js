@@ -5,7 +5,7 @@ let UserStore = createStore({
   storeName: 'UserStore',
 
   initialize: function() {
-    this.user = "guest";
+    this.user = null;
   },
 
   getState: function() {
@@ -25,6 +25,12 @@ let UserStore = createStore({
   handlers: {
     'user-data': function(user){
       this.user = user;
+
+      this.emitChange();
+    },
+
+    'logout': function(data){
+      this.user = null;
 
       this.emitChange();
     }

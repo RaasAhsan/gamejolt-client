@@ -8,6 +8,8 @@ import Tag from './components/Tag';
 import GamePage from './components/GamePage';
 import Search from './components/Search';
 import GameToken from './components/GameToken';
+import Login from './components/Login';
+import SignUp from './components/SignUp';
 
 module.exports = {
   index: Index,
@@ -19,5 +21,7 @@ module.exports = {
   tag: Tag,
   gamePage: GamePage,
   search: Search,
-  gameToken: GameToken
+  gameToken: GameToken,
+  login: Login,
+  signUp: SignUp
 };

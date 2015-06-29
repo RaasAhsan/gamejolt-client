@@ -2,11 +2,24 @@ var app = require('app');
 var BrowserWindow = require('browser-window');
 var ipc = require('ipc');
 
+var fs = require('fs');
+var jsonfile = require('jsonfile');
+
 require('crash-reporter').start();
 
 var mainWindow = null;
+var homeDir = process.env.HOME;
+var configDir = process.env.HOME + '/.gamejolt/';
 
-console.log(process.env.HOME);
+// Create data + config dirs and files for gamejolt
+if(!fs.existsSync(configDir)) {
+  fs.mkdirSync(configDir);
+  var defaultConfig = {
+    downloadedGames: []
+  };
+
+  jsonfile.writeFileSync(configDir + 'data.json', defaultConfig);
+}
 
 app.on('window-all-closed', function() {
   if (process.platform != 'darwin') {
@@ -26,6 +39,7 @@ app.on('ready', function() {
   });
 
   mainWindow.webContents.on('did-finish-load', function(){
+
     ipc.on('get-frontend-cookie', function(event, arg){
       mainWindow.webContents.session.cookies.get({name: 'frontend'}, function(error, cookies){
         if(error) throw error;
@@ -36,5 +50,10 @@ app.on('ready', function() {
         }
       });
     });
+
+    ipc.on('downloaded-game', function(event, arg){
+      
+    });
+
   });
 });
