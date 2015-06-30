@@ -59,21 +59,31 @@ let GamePage = React.createClass({
 
   render: function() {
     let headerStyle = {
-      backgroundImage: 'url(' + this.state.game.header_media_item.img_url + ')'
+      backgroundImage: 'url("")'
     };
+
+    if(this.state.game.header_media_item) {
+      headerStyle = {
+        backgroundImage: 'url(' + this.state.game.header_media_item.img_url + ')'
+      };
+    }
 
     let followClasses = classSet({
       'button-active': this.state.libraryGame != null
     });
 
-    let packages = this.state.overview.packages.map((p, i) => {
-      let latest = this.getReleasesForPackage(p.id)[0];
-      let builds = this.getBuildsForRelease(latest.id);
+    let packages = [];
 
-      return (
-        <Package key={i} game={this.state.game} package={p} release={latest} builds={builds}/>
-      );
-    });
+    if(this.state.overview.packages) {
+      packages = this.state.overview.packages.map((p, i) => {
+        let latest = this.getReleasesForPackage(p.id)[0];
+        let builds = this.getBuildsForRelease(latest.id);
+
+        return (
+          <Package key={i} game={this.state.game} package={p} release={latest} builds={builds}/>
+        );
+      });
+    }
 
     return (
       <div className="game-page">
