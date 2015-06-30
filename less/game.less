@@ -12,11 +12,129 @@
 }
 
 .game-info {
-  padding: 24px;
+  padding: 24px 36px;
 
   .game-about {
+    padding-right: 30px;
+    .game-description {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 16px;
+      line-height: 23px;
+      color: #333;
+    }
+  }
+
+  .game-section-title {
     font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
-    
+    font-size: 38px;
+    color: #222;
+
+    margin-bottom: 2px;
+  }
+
+  .game-actions {
+    padding-bottom: 16px;
+  }
+
+  .game-files {
+  }
+}
+
+.game-package {
+  font-family: 'Open Sans', sans-serif;
+
+  color: #fff;
+  background: #333;
+
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+
+  border-right: 0px solid #ff3fac;
+
+  cursor: pointer;
+
+  transition: border-right linear 0.1s;
+  &:hover {
+    border-right: 8px solid #ff3fac;
+  }
+
+  .package-title {
+    font-size: 22px;
+    font-weight: 300;
+  }
+
+  .package-version {
+    margin-left: 8px;
+
+    font-size: 12px;
+    color: #bbb;
+  }
+
+  .package-platforms {
+    margin-top: 3px;
+    i {
+      font-size: 24px;
+      margin-right: 8px;
+    }
+  }
+}
+
+.game-soundtrack {
+  font-family: 'Open Sans', sans-serif;
+
+  color: #fff;
+  background: #333;
+
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+
+  .soundtrack-title {
+    font-size: 22px;
+    font-weight: 300;
+  }
+
+  audio {
+    width: 100%;
+
+    margin: 4px 0;
+
+    background-color: #000;
+    border-radius: 0px;
+  }
+
+  .game-track {
+    width: 100%;
+    padding: 2px 0;
+    margin-bottom: 5px;
+    cursor: pointer;
+
+    border-radius: 2px;
+
+    .track-number {
+      text-align: right;
+      vertical-align: bottom;
+
+      margin-bottom: 1px;
+      padding-right: 8px;
+
+      font-size: 12px;
+    }
+    .track-title {
+      font-size: 15px;
+      margin-top: 1px;
+    }
+
+    transition: all 0.1s linear;
+    &:hover {
+      color: #cf0;
+      background-color: #2f7f6f;
+    }
+
+    &.active-track {
+      color: #cf0;
+      background-color: #2f7f6f;
+    }
   }
 }

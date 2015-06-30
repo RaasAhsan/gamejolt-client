@@ -1,9 +1,14 @@
 
-let getGame = (gameId) => {
+export let general = (gameId) => {
   return {
     method: 'get',
     url: 'https://gamejolt.com/site-api/web/discover/games/' + gameId
   };
 }
 
-module.exports = getGame;
+export let overview = (gameId) => {
+  return {
+    method: 'get',
+    url: 'https://gamejolt.com/site-api/web/discover/games/overview/' + gameId
+  };
+}

@@ -6,7 +6,6 @@ let ChatInterface = require('../api/ChatInterface');
 
 let WebInterface = require('../api/WebInterface');
 let login = require('../actions/login');
-let auth = require('./auth');
 let getNotifications = require('../actions/getNotifications');
 let getFriendRequests = require('../actions/getFriendRequests');
 

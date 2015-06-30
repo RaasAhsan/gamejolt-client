@@ -5,6 +5,7 @@ var ipc = require('ipc');
 var fs = require('fs');
 var jsonfile = require('jsonfile');
 var Download = require('download');
+var open = require('open');
 
 require('crash-reporter').start();
 
@@ -53,6 +54,15 @@ app.on('ready', function() {
       });
     });
 
+  });
+
+  // prevents the webkit navigator from opening links inside the window
+  mainWindow.webContents.on('will-navigate', function(event, url){
+    if(url.startsWith("http")) {
+      event.preventDefault();
+
+      open(url);
+    }
   });
 });
 
