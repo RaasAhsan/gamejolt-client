@@ -16,8 +16,12 @@ var getCachedFileUrl = function(name, callback){
   ipc.on('get-cached-file-url', function(arg){
     callback(arg);
   });
-}
+};
+
+var downloadGame = function(url, filename){
+  ipc.send('download-game', url, filename);
+};
 
 var isInternetConnected = function(){
   return navigator.onLine;
-}
+};

@@ -13,6 +13,7 @@ var mainWindow = null;
 var homeDir = process.env.HOME;
 var configDir = process.env.HOME + '/.gamejolt/';
 var cacheDir = process.env.HOME + '/.gamejolt/cachedir/';
+var downloadDir = process.env.HOME + '/Downloads/';
 
 // Create data + config dirs and files for gamejolt
 if(!fs.existsSync(configDir)) {
@@ -51,6 +52,19 @@ app.on('ready', function() {
         } else {
           event.sender.send('receive-frontend-cookie', null);
         }
+      });
+    });
+
+    ipc.on('download-game', function(event, url, filename){
+      new Download({}).get(url).rename(filename).dest(downloadDir).use(function(res, url, opts){
+        var totalBytes = parseFloat(res.headers['content-length']);
+        var progress = 0;
+        res.on('data', function(data){
+          progress += data.length;
+          console.log(progress / totalBytes);
+        });
+      }).run(function (err, files) {
+        console.log("Downloaded " + url + " to " + filename + ".");
       });
     });
 
