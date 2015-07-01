@@ -23,11 +23,13 @@
   },
   "dependencies": {
     "axios": "^0.5.4",
+    "chmodr": "^0.1.1",
     "decompress": "^2.3.0",
     "deepcopy": "^0.5.0",
     "dispatchr": "^0.3.3",
     "download": "^3.3.0",
     "electron-prebuilt": "^0.28.3",
+    "extract-zip": "^1.0.3",
     "jsonfile": "^2.2.1",
     "moment": "^2.10.3",
     "object-assign": "^3.0.0",

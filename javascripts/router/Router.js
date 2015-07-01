@@ -40,9 +40,13 @@ class Router extends React.Component {
     let Route = this.state.routes[this.state.path];
     return (
       <Handler>
-        <Route params={this.state.params}/>
+        <div key={this.state.path + JSON.stringify(this.state.params)}>
+          <Route params={this.state.params}/>
+        </div>
       </Handler>
     );
+
+    // this key is made to remount pages with same parameters
   }
 
 }

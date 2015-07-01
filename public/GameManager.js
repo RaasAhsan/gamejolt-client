@@ -1,7 +1,7 @@
 var Download = require('download');
 var jsonfile = require('jsonfile');
-var unzip = require('unzip');
-var fs = require('fs');
+var extract = require('extract-zip');
+var chmodr = require('chmodr');
 
 var ConfigManager = require('./ConfigManager');
 
@@ -46,8 +46,10 @@ module.exports = {
       res.on('end', function(){
         var installData = {
           location: gameDir,
+          name: release,
           executable: build.primary_file.filename,
-          version: releaseVersion
+          version: releaseVersion,
+          buildData: build
         };
 
         ConfigManager.addInstalledGame(build.id, installData);
@@ -58,7 +60,9 @@ module.exports = {
       console.log("Downloaded " + downloadUrl + " to " + file + ".");
 
       if(file.endsWith(".zip")) {
-        fs.createReadStream(gameDir + file).pipe(unzip.Extract({ path: gameDir }));
+        extract(gameDir + file, {dir: gameDir}, function(err) {
+          chmodr.sync(gameDir, '07555');
+        });
       }
     });
   }

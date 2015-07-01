@@ -2,6 +2,8 @@ import React from "react";
 import classSet from 'react-classset';
 import If from './control/If';
 
+let GameThumbnail = require('./GameThumbnail');
+
 let WebInterface = require("../api/WebInterface");
 let getGame = require("../actions/getGame");
 let libraryGame = require("../actions/libraryGame");
@@ -25,7 +27,8 @@ let GamePage = React.createClass({
         packages: [],
         releases: [],
         builds: [],
-        songs: []
+        songs: [],
+        recommendedGames: []
       }
     };
   },
@@ -122,6 +125,8 @@ let GamePage = React.createClass({
       });
     }
 
+    let recommendedGames = this.state.overview.recommendedGames.map((game, i) => <GameThumbnail key={i} game={game}/>);
+
     return (
       <div className="game-page">
         <div className="game-header" style={headerStyle}>
@@ -154,6 +159,11 @@ let GamePage = React.createClass({
               <Soundtrack tracks={this.state.overview.songs}/>
             </If>
           </div>
+        </div>
+
+        <div className="recommended-games">
+          <div className="section-title">Check these games out too!</div>
+          {recommendedGames}
         </div>
       </div>
     );

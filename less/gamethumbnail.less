@@ -4,11 +4,44 @@ div.game-thumbnail {
 
   padding: 6px 12px;
 
+  position: relative;
+
   font-family: 'Open Sans', sans-serif;
   font-size: 15px;
 
-  img {
-    width: 100%;
+  .game-thumbnail-image {
+    position: relative;
+
+    img.game-image {
+      width: 100%;
+    }
+
+    .developer-avatar {
+      width: 32px;
+      height: 32px;
+
+      border: 2px solid #fff;
+      border-radius: 100%;
+
+      background-color: #333;
+
+      position: absolute;
+      top: 8px;
+      right: 8px;
+
+      opacity: 0;
+      transform: scale(1);
+
+      transition: all 0.1s ease-in;
+    }
+
+    &:hover {
+      transition: all 0.1s ease-in;
+      .developer-avatar {
+        opacity: 1;
+        transform: scale(1.1);
+      }
+    }
   }
 
   .game-title {
@@ -30,5 +63,15 @@ div.game-thumbnail {
     font-size: 13px;
 
     color: #444;
+  }
+
+  .game-platforms {
+    float: right;
+    font-size: 13px;
+    border-radius: 3px;
+
+    i {
+      margin: 2px;
+    }
   }
 }

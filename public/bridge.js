@@ -1,6 +1,9 @@
 var ipc = require('ipc');
 
 var GameManager = require('./GameManager');
+var ConfigManager = require('./ConfigManager');
+
+var open = require('open');
 
 var getFrontendCookie = function(callback){
   ipc.send('get-frontend-cookie');
@@ -54,8 +57,12 @@ var installGame = function(data){
       window.dispatcher.dispatch('download-progress', {buildId: data.build.id, progress: percentage});
     }
   }, function(){
-    window.dispatcher.dispatch('download-complete', {buildId: data.build.id, releaseTitle: data.release, type: 'download'});
+    window.dispatcher.dispatch('download-complete', {buildId: data.build.id, releaseTitle: data.release, type: 'install'});
   });
+};
+
+var getInstalledGames = function(){
+  return ConfigManager.getConfig().installedGames;
 };
 
 var isInternetConnected = function(){
@@ -68,3 +75,7 @@ var getPlatform = function(){
   else if (navigator.appVersion.indexOf("Linux")!=-1) return "os_linux";
   else return "os_other";
 };
+
+var openGameFolder = function(gameFolder){
+  open(gameFolder);
+}

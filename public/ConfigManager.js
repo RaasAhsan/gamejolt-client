@@ -14,10 +14,17 @@ module.exports = {
   },
 
   addInstalledGame: function(buildId, installData){
-    var config = getConfig();
-    config[buildId] = installData;
+    var config = this.getConfig();
+    config.installedGames[buildId] = installData;
 
-    saveConfig(config)
+    this.saveConfig(config);
+  },
+
+  uninstallGame: function(buildId){
+    var config = this.getConfig();
+    delete config.installedGames[buildId];
+
+    this.saveConfig(config);
   }
 
 }

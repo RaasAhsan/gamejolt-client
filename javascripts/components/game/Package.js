@@ -40,7 +40,7 @@ let Package = React.createClass({
         new WebInterface().makeRequest(getDownload(build.id), (payload) => {
           let releaseTitle = this.props.package.title || this.props.game.title;
 
-          notify('Started game download', `${releaseTitle} download has started.`);
+          notify('Downloading game', `${releaseTitle} is downloading.`);
 
           let downloadData = {
             buildId: build.id,
@@ -61,7 +61,7 @@ let Package = React.createClass({
         new WebInterface().makeRequest(getDownload(build.id), (payload) => {
           let releaseTitle = this.props.package.title || this.props.game.title;
 
-          notify('Started game install', `${releaseTitle} install has started.`);
+          notify('Installing game', `${releaseTitle} is installing...`);
 
           let installData = {
             build: build,
