@@ -1,5 +1,10 @@
 import React from 'react';
 
+import assign from 'object-assign';
+
+import StoreListener from '../mixins/StoreListener';
+import DownloadStore from '../../stores/DownloadStore';
+
 import classSet from 'react-classset';
 import If from '../control/If';
 
@@ -11,10 +16,18 @@ let Progress = require('./Progress');
 
 let Package = React.createClass({
 
+  mixins: [StoreListener],
+
+  statics: {
+    stores: [DownloadStore]
+  },
+
   getInitialState: function() {
-    return {
-      downloadOpen: false
-    };
+    return assign(window.dispatcher.getStore(DownloadStore).getState(), {downloadOpen: false});
+  },
+
+  onChange: function() {
+    this.setState(assign(window.dispatcher.getStore(DownloadStore).getState()));
   },
 
   openDownload: function(){
@@ -23,15 +36,61 @@ let Package = React.createClass({
 
   downloadBuild: function(build){
     return (e) => {
-      new WebInterface().makeRequest(getDownload(build.id), (payload) => {
-        let releaseTitle = this.props.package.title || this.props.game.title;
+      if(!this.state.builds[build.id]) {
+        new WebInterface().makeRequest(getDownload(build.id), (payload) => {
+          let releaseTitle = this.props.package.title || this.props.game.title;
 
-        console.log(build);
+          notify('Started game download', `${releaseTitle} download has started.`);
 
-        notify('Started game download', `${releaseTitle} download has started.`);
-        downloadGame(payload.downloadUrl, build.primary_file.filename);
-      });
+          let downloadData = {
+            buildId: build.id,
+            downloadUrl: payload.downloadUrl,
+            filename: build.primary_file.filename,
+            release: releaseTitle
+          };
+
+          downloadGame(downloadData);
+        });
+      }
     };
+  },
+
+  installBuild: function(build){
+    return (e) => {
+      if(!this.state.builds[build.id]) {
+        new WebInterface().makeRequest(getDownload(build.id), (payload) => {
+          let releaseTitle = this.props.package.title || this.props.game.title;
+
+          notify('Started game install', `${releaseTitle} install has started.`);
+
+          let installData = {
+            build: build,
+            downloadUrl: payload.downloadUrl,
+            filename: build.primary_file.filename,
+            release: releaseTitle,
+            releaseVersion: this.props.release.version_number
+          };
+
+          installGame(installData);
+        });
+      }
+    };
+  },
+
+  getBuildAction: function(build){
+    if(this.getPlatformAction(build) == "Install ") {
+      return this.installBuild(build);
+    } else {
+      return this.downloadBuild(build);
+    }
+  },
+
+  getPlatformAction: function(build){
+    if(build[getPlatform()]) {
+      return "Install ";
+    } else {
+      return "Download ";
+    }
   },
 
   render: function() {
@@ -70,31 +129,31 @@ let Package = React.createClass({
       return (
         <span key={i}>
           <If test={build.os_windows || build.os_windows_64}>
-            <button className="button-full text-white" onClick={this.downloadBuild(build)}>
-              <i className="ionicons ion-social-windows"></i> Download for Windows <span className="subtext">{size}</span>
+            <button className="button-full text-white" onClick={this.getBuildAction(build)}>
+              <i className="ionicons ion-social-windows"></i> {this.getPlatformAction(build)} for Windows <span className="subtext">{size}</span>
             </button>
           </If>
           <If test={build.os_mac || build.os_mac_64}>
-            <button className="button-full text-white" onClick={this.downloadBuild(build)}>
-              <i className="ionicons ion-social-apple"></i> Install for Mac <span className="subtext">{size}</span>
+            <button className="button-full text-white" onClick={this.getBuildAction(build)}>
+              <i className="ionicons ion-social-apple"></i> {this.getPlatformAction(build)} for Mac <span className="subtext">{size}</span>
             </button>
           </If>
           <If test={build.os_linux || build.os_linux_64}>
-            <button className="button-full text-white" onClick={this.downloadBuild(build)}>
-              <i className="ionicons ion-social-tux"></i> Download for Linux <span className="subtext">{size}</span>
+            <button className="button-full text-white" onClick={this.getBuildAction(build)}>
+              <i className="ionicons ion-social-tux"></i> {this.getPlatformAction(build)} for Linux <span className="subtext">{size}</span>
             </button>
           </If>
           <If test={build.type == "html"}>
-            <button className="button-full text-white" onClick={this.downloadBuild(build)}>
+            <button className="button-full text-white" onClick={this.getBuildAction(build)}>
               <i className="ionicons ion-social-chrome"></i> Play <span className="subtext">{size}</span>
             </button>
           </If>
           <If test={build.os_other}>
             <button className="button-full text-white" onClick={this.downloadBuild(build)}>
-              <i className="ionicons ion-android-laptop"></i> Download for other <span className="subtext">{size}</span>
+              <i className="ionicons ion-android-laptop"></i> {this.getPlatformAction(build)} for other <span className="subtext">{size}</span>
             </button>
           </If>
-          <Progress progress={20}/>
+          <Progress downloads={this.state.builds} build={build}/>
         </span>
       );
     });

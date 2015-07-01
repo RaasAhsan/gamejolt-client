@@ -23,9 +23,10 @@
   },
   "dependencies": {
     "axios": "^0.5.4",
+    "decompress": "^2.3.0",
     "deepcopy": "^0.5.0",
     "dispatchr": "^0.3.3",
-    "download": "^4.1.2",
+    "download": "^3.3.0",
     "electron-prebuilt": "^0.28.3",
     "jsonfile": "^2.2.1",
     "moment": "^2.10.3",

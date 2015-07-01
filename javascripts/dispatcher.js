@@ -1,8 +1,10 @@
 import UserStore from './stores/UserStore';
+import DownloadStore from './stores/DownloadStore';
 
 let dispatcher = require('dispatchr').createDispatcher({
   stores: [
-    UserStore
+    UserStore,
+    DownloadStore
   ]
 });
 
