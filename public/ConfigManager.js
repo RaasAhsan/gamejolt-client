@@ -20,7 +20,7 @@ module.exports = {
     this.saveConfig(config);
   },
 
-  uninstallGame: function(buildId){
+  uninstall: function(buildId){
     var config = this.getConfig();
     delete config.installedGames[buildId];
 

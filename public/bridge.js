@@ -4,6 +4,9 @@ var GameManager = require('./GameManager');
 var ConfigManager = require('./ConfigManager');
 
 var open = require('open');
+var rimraf = require('rimraf');
+var path = require('path');
+var FindFiles = require('node-find-files');
 
 var getFrontendCookie = function(callback){
   ipc.send('get-frontend-cookie');
@@ -61,6 +64,18 @@ var installGame = function(data){
   });
 };
 
+var uninstall = function(buildId, callback) {
+  var data = ConfigManager.getConfig().installedGames[buildId];
+  if(data.location.endsWith(data.name + '/')) {
+    rimraf(data.location, function(err){
+      if(err) {} else {
+        ConfigManager.uninstall(buildId);
+        callback();
+      }
+    });
+  }
+}
+
 var getInstalledGames = function(){
   return ConfigManager.getConfig().installedGames;
 };
@@ -74,6 +89,37 @@ var getPlatform = function(){
   else if (navigator.appVersion.indexOf("Mac")!=-1) return "os_mac";
   else if (navigator.appVersion.indexOf("Linux")!=-1) return "os_linux";
   else return "os_other";
+};
+
+var getExecutables = function() {
+  if(getPlatform() == "os_windows") return [".exe", ".jar"]
+  else if(getPlatform() == "os_mac") return [".app", ".sh", ".jar"]
+  else if(getPlatform() == "os_linux") return [".sh", ".jar"]
+  else return [".sh", ".jar"]
+};
+
+var openGame = function(gameFolder){
+  var validExtensions = getExecutables();
+
+  var executables = [];
+
+  var finder = new FindFiles({
+    rootFolder: gameFolder,
+    filterFunction: function(fpath, stat) {
+      return validExtensions.indexOf(path.extname(fpath)) != -1;
+    }
+  });
+
+  finder.on("match", function(strPath, stat) {
+    executables.push(strPath);
+  })
+  finder.on("complete", function() {
+    if(executables.length > 0) {
+      open(executables[0]);
+    }
+  })
+
+  finder.startSearch();
 };
 
 var openGameFolder = function(gameFolder){

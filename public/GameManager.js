@@ -1,5 +1,6 @@
 var Download = require('download');
 var jsonfile = require('jsonfile');
+
 var extract = require('extract-zip');
 var chmodr = require('chmodr');
 
@@ -61,8 +62,10 @@ module.exports = {
 
       if(file.endsWith(".zip")) {
         extract(gameDir + file, {dir: gameDir}, function(err) {
-          chmodr.sync(gameDir, '07555');
+          chmodr.sync(gameDir, 0755);
         });
+      } else {
+        chmodr.sync(gameDir, 0755);
       }
     });
   }
