@@ -85,9 +85,9 @@ var isInternetConnected = function(){
 };
 
 var getPlatform = function(){
-  if (navigator.appVersion.indexOf("Win")!=-1) return "os_windows";
-  else if (navigator.appVersion.indexOf("Mac")!=-1) return "os_mac";
-  else if (navigator.appVersion.indexOf("Linux")!=-1) return "os_linux";
+  if (process.platform == 'win32') return "os_windows";
+  else if (process.platform == 'darwin') return "os_mac";
+  else if (process.platform == 'linux') return "os_linux";
   else return "os_other";
 };
 
@@ -115,7 +115,9 @@ var openGame = function(gameFolder){
   })
   finder.on("complete", function() {
     if(executables.length > 0) {
-      open(executables[0]);
+      open(executables[0], function(){
+        console.log("complete!");
+      });
     }
   })
 

@@ -13,8 +13,7 @@ let Sidebar = React.createClass({
 
   getInitialState: function() {
     return {
-      showNav: 0,
-      onlineUsers: 0
+      showNav: 0
     };
   },
 
@@ -26,14 +25,6 @@ let Sidebar = React.createClass({
         this.setState({showNav: this.state.showNav + 1});
       }
     }, 50);
-  },
-
-  componentWillReceiveProps: function(nextProps) {
-    if(nextProps.chatInterface) {
-      nextProps.chatInterface.onOnlineUsersChanged((count) => {
-        this.setState({onlineUsers: count});
-      });
-    }
   },
 
   search: function(e){
@@ -117,15 +108,6 @@ let Sidebar = React.createClass({
         <div className="sidebar-bottom">
           <div className="sidebar-bottom-contents">
             <UserControl showNav={this.state.showNav}/>
-            <div className="pure-u-8-24 sidebar-stat users-online">
-              <i className="ionicons ion-android-people"></i> <span>{this.state.onlineUsers}</span>
-            </div>
-            <div className="pure-u-8-24 sidebar-stat friend-requests">
-              <i className="ionicons ion-android-person-add"></i> <span>{this.props.friendRequests.length}</span>
-            </div>
-            <div className="pure-u-8-24 sidebar-stat news-notifications">
-              <i className="ionicons ion-ios-lightbulb"></i> <span>{this.props.notifications.length}</span>
-            </div>
           </div>
         </div>
       </div>
