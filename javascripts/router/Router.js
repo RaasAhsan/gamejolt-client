@@ -40,7 +40,7 @@ class Router extends React.Component {
     let Route = this.state.routes[this.state.path];
     return (
       <Handler>
-        <div key={this.state.path + JSON.stringify(this.state.params)}>
+        <div className="route-content" key={this.state.path + JSON.stringify(this.state.params)}>
           <Route params={this.state.params}/>
         </div>
       </Handler>

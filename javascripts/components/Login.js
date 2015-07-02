@@ -22,6 +22,7 @@ let Login = React.createClass({
           img_url: ""
         }
       },
+      backgroundLoaded: false,
       showField: 0,
       loading: false
     };
@@ -30,6 +31,11 @@ let Login = React.createClass({
   componentDidMount: function() {
     new WebInterface().makeRequest(getCustomizedPage, (payload) => {
       this.setState({background: payload});
+      var i = new Image();
+      i.src = payload.mediaItem.img_url;
+      i.onload = () => {
+        this.setState({backgroundLoaded: true});
+      };
     });
 
     this.showInterval = setInterval(() => {
@@ -59,7 +65,7 @@ let Login = React.createClass({
 
   render: function() {
     let featuredStyle = {
-      backgroundImage: 'url(' + this.state.background.mediaItem.img_url + ')'
+      backgroundImage: this.state.backgroundLoaded ? 'url(' + this.state.background.mediaItem.img_url + ')' : 'url()'
     };
 
     return (

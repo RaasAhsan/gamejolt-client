@@ -4,7 +4,7 @@
   "main": "main.js",
   "scripts": {
     "start": "./node_modules/electron-prebuilt/dist/Electron.app/Contents/MacOS/Electron .",
-    "watch": "./node_modules/.bin/webpack-dev-server --hot --port 8090",
+    "watch": "./node_modules/.bin/webpack-dev-server --port 8090",
     "electron-rebuild": "./node_modules/.bin/electron-rebuild"
   },
   "devDependencies": {
