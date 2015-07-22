@@ -23,7 +23,7 @@ let InstalledGames = React.createClass({
         notify('Game uninstalled', games[buildId].name + " has been uninstalled.");
 
         delete games[buildId];
-        this.setState({installedGames: games});            
+        this.setState({installedGames: games});
       });
     };
   },
